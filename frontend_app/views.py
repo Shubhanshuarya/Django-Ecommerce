@@ -6,5 +6,5 @@ def home(request):
     return render(request, 'frontend_app/home.html')
 
 
-def product_details(request):
+def product_detail(request):
     return render(request, 'frontend_app/productdetail.html')

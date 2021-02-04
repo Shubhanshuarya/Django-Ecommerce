@@ -24,3 +24,7 @@ def profile(request):
 
 def address(request):
     return render(request, 'frontend_app/address.html')
+
+
+def orders(request):
+    return render(request, 'frontend_app/orders.html')

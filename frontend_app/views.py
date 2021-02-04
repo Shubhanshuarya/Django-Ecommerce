@@ -8,3 +8,7 @@ def home(request):
 
 def product_detail(request):
     return render(request, 'frontend_app/productdetail.html')
+
+
+def add_to_cart(request):
+    return render(request, 'frontend_app/addtocart.html')

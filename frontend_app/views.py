@@ -36,3 +36,7 @@ def change_password(request):
 
 def mobile(request):
     return render(request, 'frontend_app/mobile.html')
+
+
+def login(request):
+    return render(request, 'frontend_app/login.html')

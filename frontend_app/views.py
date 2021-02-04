@@ -28,3 +28,7 @@ def address(request):
 
 def orders(request):
     return render(request, 'frontend_app/orders.html')
+
+
+def change_password(request):
+    return render(request, 'frontend_app/changepassword.html')

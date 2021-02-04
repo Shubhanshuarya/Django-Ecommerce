@@ -13,5 +13,6 @@ urlpatterns = [
     path('mobile/', views.mobile, name='mobile'),
     path('login/', views.login, name='login'),
     path('registration/', views.customer_registration, name='customer_registration'),
+    path('checkout/', views.checkout, name='checkout'),
 
 ]

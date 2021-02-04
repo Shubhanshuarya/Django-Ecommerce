@@ -44,3 +44,7 @@ def login(request):
 
 def customer_registration(request):
     return render(request, 'frontend_app/customerregistration.html')
+
+
+def checkout(request):
+    return render(request, 'frontend_app/checkout.html')

@@ -32,3 +32,7 @@ def orders(request):
 
 def change_password(request):
     return render(request, 'frontend_app/changepassword.html')
+
+
+def mobile(request):
+    return render(request, 'frontend_app/mobile.html')

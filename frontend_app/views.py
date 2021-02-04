@@ -40,3 +40,7 @@ def mobile(request):
 
 def login(request):
     return render(request, 'frontend_app/login.html')
+
+
+def customer_registration(request):
+    return render(request, 'frontend_app/customerregistration.html')

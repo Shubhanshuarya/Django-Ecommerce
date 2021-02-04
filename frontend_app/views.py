@@ -20,3 +20,7 @@ def buy_now(request):
 
 def profile(request):
     return render(request, 'frontend_app/profile.html')
+
+
+def address(request):
+    return render(request, 'frontend_app/address.html')

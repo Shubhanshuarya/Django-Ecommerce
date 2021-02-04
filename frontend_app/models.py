@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 # Create your models here.
 
 STATE_CHOICES = (
@@ -41,12 +42,14 @@ STATE_CHOICES = (
     ('West Bengal', 'West Bengal'),
 )
 
+
 class Customer(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     locality = models.CharField(max_length=200)
     city = models.CharField(max_length=50)
-    zipcode = models.CharField(choices=STATE_CHOICES, max_length=50)
+    zipcode = models.IntegerField()
+    state = models.CharField(choices=STATE_CHOICES, max_length=50)
 
     def __str__(self):
         # Returns self.user.username

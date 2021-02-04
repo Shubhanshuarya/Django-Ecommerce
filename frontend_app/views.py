@@ -12,3 +12,7 @@ def product_detail(request):
 
 def add_to_cart(request):
     return render(request, 'frontend_app/addtocart.html')
+
+
+def buy_now(request):
+    return render(request, 'frontend_app/buynow.html')

@@ -16,3 +16,7 @@ def add_to_cart(request):
 
 def buy_now(request):
     return render(request, 'frontend_app/buynow.html')
+
+
+def profile(request):
+    return render(request, 'frontend_app/profile.html')

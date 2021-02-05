@@ -22,6 +22,8 @@ urlpatterns = [
     # User Authentication, Password Change, Reset Form and Many more... related to User Auth
     path('accounts/login/', auth_views.LoginView.as_view(template_name='frontend_app/login.html', authentication_form=LoginForm), name='login'),
     path('registration/', views.CustomerRegistrationView.as_view(), name='customer_registration'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+
     path('checkout/', views.checkout, name='checkout'),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

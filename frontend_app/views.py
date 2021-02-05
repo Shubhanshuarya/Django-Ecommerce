@@ -227,7 +227,7 @@ def mobile(request, data=None):
 class CustomerRegistrationView(View):
     def get(self, request):
         form = CustomerRegistrationForm()
-        return render(request, 'frontend_app/customerregistration.html', {'form': form})
+        return render(request, 'user_auth/customerregistration.html', {'form': form})
 
     def post(self, request):
         form = CustomerRegistrationForm(request.POST)
@@ -249,7 +249,7 @@ class CustomerRegistrationView(View):
             msg.content_subtype = "html"  # Main content is now text/html
             msg.send()
             print("Mail successfully sent")
-        return render(request, 'frontend_app/customerregistration.html', {'form': form})
+        return render(request, 'user_auth/customerregistration.html', {'form': form})
 
 
 @login_required

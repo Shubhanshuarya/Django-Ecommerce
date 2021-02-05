@@ -100,7 +100,6 @@ def plus_cart(request):
         return HttpResponse("")
 
 
-
 def minus_cart(request):
     if request.method == 'GET':
         prod_id = request.GET['prod_id']
@@ -153,8 +152,20 @@ def remove_cart(request):
         return HttpResponse("")
 
 
-def buy_now(request):
-    return render(request, 'frontend_app/buynow.html')
+@login_required
+def payment_done(request):
+    custid = request.GET.get('custid')
+    print("Customer ID", custid)
+    user = request.user
+    cartid = Cart.objects.filter(user=user)
+    customer = Customer.objects.get(id=custid)
+    print(customer)
+    for cid in cartid:
+        OrderPlaced(user=user, customer=customer, product=cid.product, quantity=cid.quantity).save()
+        print("Order Saved")
+        cid.delete()
+        print("Cart Item Deleted")
+    return redirect("orders")
 
 
 @method_decorator(login_required, name='dispatch')
@@ -193,8 +204,11 @@ def address(request):
     return render(request, 'frontend_app/address.html', {'add': add, 'totalitem': totalitem})
 
 
+@login_required
 def orders(request):
-    return render(request, 'frontend_app/orders.html')
+    user1 = request.user
+    op = OrderPlaced.objects.filter(user=request.user)
+    return render(request, 'frontend_app/orders.html', {'order_placed': op, 'user': user1})
 
 
 def mobile(request, data=None):
@@ -232,5 +246,9 @@ class CustomerRegistrationView(View):
         return render(request, 'frontend_app/customerregistration.html', {'form': form})
 
 
+@login_required
 def checkout(request):
-    return render(request, 'frontend_app/checkout.html')
+    user = request.user
+    add = Customer.objects.filter(user=user)
+    cart_items = Cart.objects.filter(user=request.user)
+    return render(request, 'frontend_app/checkout.html', {'add': add, 'cart_items': cart_items})

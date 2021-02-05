@@ -59,7 +59,8 @@ class ProfileView(View):
 
 
 def address(request):
-    return render(request, 'frontend_app/address.html')
+    add = Customer.objects.filter(user=request.user)
+    return render(request, 'frontend_app/address.html', {'add': add})
 
 
 def orders(request):

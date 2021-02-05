@@ -10,7 +10,8 @@ class ProductView(View):
         topwears = Product.objects.filter(category='TW')
         bottomwears = Product.objects.filter(category='BW')
         mobiles = Product.objects.filter(category='M')
-        return render(request, 'frontend_app/home.html', {'topwears': topwears, 'bottomwears': bottomwears, 'mobiles': mobiles})
+        return render(request, 'frontend_app/home.html',
+                      {'topwears': topwears, 'bottomwears': bottomwears, 'mobiles': mobiles})
 
 
 # def product_detail(request):
@@ -46,8 +47,16 @@ def change_password(request):
     return render(request, 'frontend_app/changepassword.html')
 
 
-def mobile(request):
-    return render(request, 'frontend_app/mobile.html')
+def mobile(request, data=None):
+    if data is None:
+        mobiles = Product.objects.filter(category='M')
+    elif data == 'Redmi' or data == 'Samsung':
+        mobiles = Product.objects.filter(category='M').filter(brand=data)
+    elif data == 'below-15000':
+        mobiles = Product.objects.filter(category='M').filter(discounted_price__lt=15000)
+    elif data == 'above-15000':
+        mobiles = Product.objects.filter(category='M').filter(discounted_price__gt=15000)
+    return render(request, 'frontend_app/mobile.html', {'mobiles': mobiles})
 
 
 def login(request):

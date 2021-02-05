@@ -11,8 +11,6 @@ from django.conf import settings
 from django.core.mail import send_mail
 
 
-# def home(request):
-#    return render(request, 'frontend_app/home.html')
 class ProductView(View):
     def get(self, request):
         totalitem = 0
@@ -24,9 +22,6 @@ class ProductView(View):
         return render(request, 'frontend_app/home.html',
                       {'topwears': topwears, 'bottomwears': bottomwears, 'mobiles': mobiles, 'totalitem': totalitem})
 
-
-# def product_detail(request):
-#     return render(request, 'frontend_app/productdetail.html')
 
 class ProductDetailView(View):
     def get(self, request, pk):

@@ -9,6 +9,9 @@ from .forms import CustomerRegistrationForm, CustomerProfileForm
 from .models import Customer, Product, Cart, OrderPlaced
 from django.conf import settings
 from django.core.mail import send_mail
+from django.template import Context
+from django.template.loader import render_to_string, get_template
+from django.core.mail import EmailMessage
 
 
 class ProductView(View):
@@ -233,11 +236,19 @@ class CustomerRegistrationView(View):
             user_email = form.cleaned_data['email']
             messages.success(request, 'Congratulations!! Registered Successfully.')
             form.save()
-            subject = 'Welcome to V-Mart Shopping Mall'
-            message = f'Hi {user_name}, Thank you for registering in V-Mart. We will serve you best services and best deals as well.'
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = [user_email, ]
-            send_mail(subject, message, email_from, recipient_list)
+            ctx = {
+                'user': user_name
+            }
+            message = get_template('Email_Template/Successful_Registration.html').render(ctx)
+            msg = EmailMessage(
+                'Thanks for registration with V-Mart Shopping',
+                message,
+                'shubhanshuarya2019@gmail.com',
+                [user_email],
+            )
+            msg.content_subtype = "html"  # Main content is now text/html
+            msg.send()
+            print("Mail successfully sent")
         return render(request, 'frontend_app/customerregistration.html', {'form': form})
 
 

@@ -8,16 +8,23 @@ from .forms import LoginForm, MyPasswordChangeForm, MyPasswordResetForm, MySetPa
 urlpatterns = [
                   path('', views.ProductView.as_view(), name="home"),
                   path('product-detail/<int:pk>', views.ProductDetailView.as_view(), name="product-detail"),
-                  path('cart/', views.add_to_cart, name='add-to-cart'),
+
+                  ####################################################
+                  # Add to Cart and Buy Now Functionality
+                  path('add_to_cart/', views.add_to_cart, name='add_to_cart'),
+                  path('cart/', views.show_cart, name='show_cart'),
                   path('buy/', views.buy_now, name='buy-now'),
-                  path('profile/', views.ProfileView.as_view(), name='profile'),
-                  path('address/', views.address, name='address'),
+                  path('checkout/', views.checkout, name='checkout'),
                   path('orders/', views.orders, name='orders'),
 
+                  # ProfilePage View
+                  path('profile/', views.ProfileView.as_view(), name='profile'),
+                  path('address/', views.address, name='address'),
                   # Urls for Mobile Classified Separate Product Page
                   path('mobile/', views.mobile, name='mobile'),
                   path('mobile/<slug:data>', views.mobile, name='mobile_data'),
 
+                  #################################################################
                   # User Authentication, Password Change, Reset Form and Many more... related to User Auth
                   path('accounts/login/', auth_views.LoginView.as_view(template_name='frontend_app/login.html',
                                                                        authentication_form=LoginForm), name='login'),
@@ -41,9 +48,7 @@ urlpatterns = [
                   path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(
                       template_name="frontend_app/password_reset_complete.html"), name="password_reset_complete"),
 
+                  ######################################################################
 
-
-
-                  path('checkout/', views.checkout, name='checkout'),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

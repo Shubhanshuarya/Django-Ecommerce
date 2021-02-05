@@ -3,6 +3,8 @@ from django.views import View
 from django.contrib import messages
 from .forms import CustomerRegistrationForm
 from .models import Customer, Product, Cart, OrderPlaced
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 # def home(request):
@@ -12,7 +14,8 @@ class ProductView(View):
         topwears = Product.objects.filter(category='TW')
         bottomwears = Product.objects.filter(category='BW')
         mobiles = Product.objects.filter(category='M')
-        return render(request, 'frontend_app/home.html', {'topwears': topwears, 'bottomwears': bottomwears, 'mobiles': mobiles})
+        return render(request, 'frontend_app/home.html',
+                      {'topwears': topwears, 'bottomwears': bottomwears, 'mobiles': mobiles})
 
 
 # def product_detail(request):
@@ -44,10 +47,6 @@ def orders(request):
     return render(request, 'frontend_app/orders.html')
 
 
-def change_password(request):
-    return render(request, 'frontend_app/changepassword.html')
-
-
 def mobile(request, data=None):
     if data is None:
         mobiles = Product.objects.filter(category='M')
@@ -75,8 +74,15 @@ class CustomerRegistrationView(View):
     def post(self, request):
         form = CustomerRegistrationForm(request.POST)
         if form.is_valid():
+            user_name = form.cleaned_data['username']
+            user_email = form.cleaned_data['email']
             messages.success(request, 'Congratulations!! Registered Successfully.')
             form.save()
+            subject = 'Welcome to V-Mart Shopping Mall'
+            message = f'Hi {user_name}, Thank you for registering in V-Mart. We will serve you best services and best deals as well.'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user_email, ]
+            send_mail(subject, message, email_from, recipient_list)
         return render(request, 'frontend_app/customerregistration.html', {'form': form})
 
 

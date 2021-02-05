@@ -10,7 +10,7 @@ urlpatterns = [
                   path('product-detail/<int:pk>', views.ProductDetailView.as_view(), name="product-detail"),
                   path('cart/', views.add_to_cart, name='add-to-cart'),
                   path('buy/', views.buy_now, name='buy-now'),
-                  path('profile/', views.profile, name='profile'),
+                  path('profile/', views.ProfileView.as_view(), name='profile'),
                   path('address/', views.address, name='address'),
                   path('orders/', views.orders, name='orders'),
 
@@ -40,6 +40,9 @@ urlpatterns = [
                        name="password_reset_done"),
                   path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(
                       template_name="frontend_app/password_reset_complete.html"), name="password_reset_complete"),
+
+
+
 
                   path('checkout/', views.checkout, name='checkout'),
 

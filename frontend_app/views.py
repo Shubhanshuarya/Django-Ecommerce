@@ -60,8 +60,8 @@ def mobile(request, data=None):
     return render(request, 'frontend_app/mobile.html', {'mobiles': mobiles})
 
 
-def login(request):
-    return render(request, 'frontend_app/login.html')
+# def login(request):
+#     return render(request, 'frontend_app/login.html')
 
 
 # def customer_registration(request):

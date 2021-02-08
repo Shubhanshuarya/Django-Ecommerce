@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
 from .models import (Customer, Product, Cart, OrderPlaced)
@@ -10,8 +11,10 @@ class CustomerModelAdmin(admin.ModelAdmin):
 
 
 @admin.register(Product)
-class ProductModelAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'selling_price', 'discounted_price', 'description', 'brand', 'category', 'product_image']
+class ProductModelAdmin(SummernoteModelAdmin, admin.ModelAdmin):
+    list_display = ['id', 'title', 'selling_price', 'discounted_price', 'description', 'brand', 'category',
+                    'product_image']
+    summernote_fields = ('description',)
 
 
 @admin.register(Cart)

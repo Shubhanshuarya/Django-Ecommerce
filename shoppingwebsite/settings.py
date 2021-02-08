@@ -38,6 +38,9 @@ INSTALLED_APPS = [
 
     # Adding Own Applications
     "frontend_app",
+
+    # Rich Text Editor
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -115,6 +118,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+SUMMERNOTE_THEME = 'bs4'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_REDIRECT_URL = '/profile/'

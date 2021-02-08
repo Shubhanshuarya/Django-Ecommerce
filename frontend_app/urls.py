@@ -8,7 +8,7 @@ from .forms import LoginForm, MyPasswordChangeForm, MyPasswordResetForm, MySetPa
 urlpatterns = [
                   path('', views.ProductView.as_view(), name="home"),
                   path('product-detail/<int:pk>', views.ProductDetailView.as_view(), name="product-detail"),
-
+                  path('search', views.SearchPage, name='search_result'),
                   ####################################################
                   # Add to Cart and Buy Now Functionality
                   path('add_to_cart/', views.add_to_cart, name='add_to_cart'),

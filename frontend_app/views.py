@@ -208,6 +208,15 @@ def address(request):
     return render(request, 'frontend_app/address.html', {'add': add, 'totalitem': totalitem})
 
 
+def SearchPage(request):
+    search_content = request.GET['query']
+    products = Product.objects.filter(description__icontains=search_content)
+    print(len(products))
+    if len(products) == 0:
+        return render(request, 'frontend_app/no_search_result.html')
+    return render(request, 'frontend_app/search_result.html', {'product_result': products, 'search': search_content})
+
+
 @login_required
 def orders(request):
     user1 = request.user

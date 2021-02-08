@@ -1,0 +1,30 @@
+{% extends 'frontend_app/base.html' %}
+{% load static %}
+{% block title %}Search Results{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+ <h3 style="text-align: center">Searching for... {{search|capfirst}}</h3>
+  </div>
+  <div class="col-sm-12">
+   <div class="row justify-content-md-center">
+    {% for pd in product_result %}
+     <div class="col-sm-12">
+       <a href="{% url 'product-detail' pd.id %}" style="text-decoration: none; color: black">
+      <div class="row shadow p-3 mb-3">
+       <div class="col-sm-2"><img src="{{pd.product_image.url}}" alt="" srcset="" class="img-fluid" height="150" width="150"></div>
+       <div class="col-sm-7">
+        <p>Product: {{pd.title}}</p>
+        <p>Quantity: {{pd.brand}}</p>
+        <p>Price: {{pd.discounted_price}}</p>
+       </div>
+       </div>
+       </a>
+     </div>
+     </div>
+    {% endfor %}
+   </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

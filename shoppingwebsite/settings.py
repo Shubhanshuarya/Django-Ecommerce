@@ -38,9 +38,10 @@ INSTALLED_APPS = [
 
     # Adding Own Applications
     "frontend_app",
-
     # Rich Text Editor
     'django_summernote',
+    # Social Auth
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # Social Auth Login
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'shoppingwebsite.urls'
@@ -66,10 +70,22 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # Social Auth Login
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+# Social Auth Login
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'shoppingwebsite.wsgi.application'
 
@@ -101,6 +117,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SOCIAL_AUTH_GITHUB_KEY = '61d87436a92e0cc2bf0a'  # App ID
+SOCIAL_AUTH_GITHUB_SECRET = 'f0a15ae92cac38cb927d8afc54eb7beeb1c60691'  # App Secret
+SOCIAL_AUTH_TWITTER_KEY = '#'
+SOCIAL_AUTH_TWITTER_SECRET = '#'
+SOCIAL_AUTH_FACEBOOK_KEY = '#'
+SOCIAL_AUTH_FACEBOOK_SECRET = '#'
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -120,9 +143,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 SUMMERNOTE_THEME = 'bs4'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/profile/'
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True

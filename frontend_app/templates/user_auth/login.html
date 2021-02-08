@@ -18,6 +18,14 @@
      <input type="submit" class="btn btn-primary mt-4" value="Login">
      <br>
      <div class="text-center text-primary fw-bold"><small>New to V-Mart ? <a href="{% url 'customer_registration' %}" class="text-danger">Create an Account</a> </small></div>
+       <div class="text-center center-block">
+           <hr>
+            <p class="txt-railway">-- Login with Social accounts --</p>
+            <b/>
+                <a href="{% url 'social:begin' 'facebook' %}"><i class="fab fa-facebook-square fa-3x social"></i></a>
+	            <a href="{% url 'social:begin' 'twitter' %}"><i class="fab fa-twitter-square fa-3x social"></i></a>
+	            <a href="{% url 'social:begin' 'github' %}"><i class="fab fa-github-square fa-3x social"></i></a>
+       </div>
 
      {% if form.non_field_errors %}
       {% for error in form.non_field_errors %}

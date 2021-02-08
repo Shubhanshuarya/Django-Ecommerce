@@ -27,7 +27,7 @@
 ## Profile Page
 ![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/11.png)
 
-## Messgae - Once Address Added
+## Message - Once Address Added
 ![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/12.png)
 
 ## Add Multiple Addresses
@@ -39,7 +39,7 @@
 ## Order Summary
 ![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/14.png)
 
-##Order Page with Status
+## Order Page with Status
 ![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/15.png)
 
 ## Change Password

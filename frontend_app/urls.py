@@ -53,6 +53,10 @@ urlpatterns = [
                       template_name="user_auth/password_reset_complete.html"), name="password_reset_complete"),
 
                   path('oauth/', include('social_django.urls', namespace='social')),
+
+                  # Social Auth Management System
+                  path('settings/', views.SettingsView.as_view(), name='settings'),
+                  path('settings/password/', views.password, name='password'),
                   ######################################################################
 
 

@@ -1,5 +1,7 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm, AdminPasswordChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
@@ -11,6 +13,9 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views import View
 from django.contrib import messages
+from django.views.generic import TemplateView
+from social_django.models import UserSocialAuth
+
 from .forms import CustomerRegistrationForm, CustomerProfileForm
 from .models import Customer, Product, Cart, OrderPlaced
 from django.conf import settings
@@ -289,3 +294,49 @@ def checkout(request):
     add = Customer.objects.filter(user=user)
     cart_items = Cart.objects.filter(user=request.user)
     return render(request, 'frontend_app/checkout.html', {'add': add, 'cart_items': cart_items})
+
+
+class SettingsView(LoginRequiredMixin, TemplateView):
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        try:
+            github_login = user.social_auth.get(provider='github')
+        except UserSocialAuth.DoesNotExist:
+            github_login = None
+        try:
+            twitter_login = user.social_auth.get(provider='twitter')
+        except UserSocialAuth.DoesNotExist:
+            twitter_login = None
+        try:
+            facebook_login = user.social_auth.get(provider='facebook')
+        except UserSocialAuth.DoesNotExist:
+            facebook_login = None
+
+        can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+
+        return render(request, 'frontend_app/settings.html', {
+            'github_login': github_login,
+            'twitter_login': twitter_login,
+            'facebook_login': facebook_login,
+            'can_disconnect': can_disconnect
+        })
+
+
+@login_required
+def password(request):
+    if request.user.has_usable_password():
+        PasswordForm = PasswordChangeForm
+    else:
+        PasswordForm = AdminPasswordChangeForm
+    if request.method == 'POST':
+        form = PasswordForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordForm(request.user)
+    return render(request, 'frontend_app/password.html', {'form': form})

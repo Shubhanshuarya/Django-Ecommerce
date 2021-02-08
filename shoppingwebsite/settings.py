@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django_summernote',
     # Social Auth
     'social_django',
+
+    #Bootstrap Crispy form
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -150,6 +153,15 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/profile/'
+
+# Crispy Form
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+# Social Auth Management System
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/settings/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

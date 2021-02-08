@@ -1,4 +1,6 @@
 {% extends 'frontend_app/base.html' %}
+{% load static %}
+{% block title %}Social Auth Management System{% endblock title %}
 {% block main-content %}
   <h2 class="p-3" style="text-align: center">Settings</h2>
 <hr>
@@ -15,7 +17,7 @@
     <div style="text-align: center">
             <button class="btn btn-danger col-md-3" type="submit" disabled>Disconnect from GitHub</button>
     </div>
-      <p style="color: red;text-align: center;" class="p-3">You must <a href="{% url 'password' %}">define a password</a> for your account before disconnecting from Github.</p>
+      <p style="color: #ff0000;text-align: center;" class="p-3">You must <a href="{% url 'password' %}">define a password</a> for your account before disconnecting from Github.</p>
     {% endif %}
   {% else %}
     <a href="{% url 'social:begin' 'github' %}">Connect to GitHub</a>

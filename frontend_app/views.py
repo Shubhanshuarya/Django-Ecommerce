@@ -15,7 +15,6 @@ from django.views import View
 from django.contrib import messages
 from django.views.generic import TemplateView
 from social_django.models import UserSocialAuth
-
 from .forms import CustomerRegistrationForm, CustomerProfileForm
 from .models import Customer, Product, Cart, OrderPlaced
 from django.conf import settings

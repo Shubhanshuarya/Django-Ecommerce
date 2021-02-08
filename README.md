@@ -6,8 +6,6 @@
 
 ![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/3.png)
 
-![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/4.png)
-
 ![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/5.png)
 
 ![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/6.png)
@@ -18,5 +16,24 @@
 
 ![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/9.png)
 
-![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/10.png)
+![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/11.png)
 
+![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/12.png)
+
+![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/4.png)
+
+![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/13.png)
+
+![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/14.png)
+
+![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/15.png)
+
+![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/16.png)
+
+![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/17.png)
+
+![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/18.png)
+
+![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/19.png)
+
+![](https://github.com/Shubhanshuarya/Django-Ecommerce/blob/main/Screenshots/20.png)

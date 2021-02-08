@@ -32,6 +32,7 @@ urlpatterns = [
                   path('accounts/login/', auth_views.LoginView.as_view(template_name='user_auth/login.html',
                                                                        authentication_form=LoginForm), name='login'),
                   path('registration/', views.CustomerRegistrationView.as_view(), name='customer_registration'),
+                  path('activate/<uidb64>/<token>/',views.activate, name='activate'),
                   path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
                   path('password_change/',
                        auth_views.PasswordChangeView.as_view(template_name='user_auth/password_change.html',
